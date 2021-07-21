@@ -1,0 +1,89 @@
+<!Doctype html>
+<html>
+    <head>    
+        <title>sign-up page</title>
+        <link rel="stylesheet"type="text/css" href="CSS/que.css">
+    </head>
+    <body>
+        <div>
+
+            <h1>sign-up</h1>
+            <form action="action_page.php" method="post">
+                <div class="imgcontainer">
+                    <img src="Image/icon-api.svg" alt="Avatar" class="avatar">
+                </div>
+                <div class="container">
+                    <label for="uname"><b>username</b></label><br>
+                    <input type="text" placeholder="Enter username" name="uname" required><br>
+                    <label for="email"><b>E-mail</b></label><br>
+                    <input type="email" placeholder="Enter e-mail" name="email" required><br> 
+                    <label for="psw1"></label><b>password</b></label><br>
+                    <input type="password" placeholder="password" name="psw1" required><br>
+                    <label for="psw2"></label><b> re-enter password</b></label><br>
+                    <input type="password" placeholder="Re-enter password" name="psw2" required><br>
+                    <button type="submit"id="register">Register</button>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember">remember me
+                    </label>
+                </div>
+                <div class="container" style="background-color:#f1f1f1">
+                <button type="button" class="cancelbtn">cancel</button>
+                </div>
+        </div>
+</form>
+    </body>
+<script>
+    let registerbtn = document.getElementById('register')
+    registerbtn.addEventListener('click', function(e){
+        e.preventDefault();
+        checkPwMatch()
+    })
+    const checkPwMatch = () =>{
+        let fields = document.getElementsByTagName('input')
+        let username = fields[0].value
+        let email = fields[1].value
+        let pw1 = fields[2].value
+        let pw2 = fields[3].value
+        let item = {
+                    username,
+                    email,
+                    pw:pw1
+                    }
+        if(pw1 === pw2){
+            register(username, email, pw1, item)
+        }
+        else{
+            alert("passwords do not match")
+        }
+        return;
+    }
+    function register(username, email, pw, item){
+        let auth = localStorage.getItem('auth')
+            if(auth === null){
+                let users = []
+                users.push(item)
+                users = JSON.stringify(users)
+                localStorage.setItem('auth', users)
+            }
+        else{
+            console.log(typeof(auth))
+            console.log(auth)
+            auth = JSON.parse(auth)
+            console.log(typeof(auth))
+            for(i=0; i< auth.length;i++){
+                console.log(auth[i].username)
+                if((auth[i].username === username) || (auth[i].email === email)){
+                    alert('user with this username or email already exist')
+                    return
+                }
+            }
+            auth.push(item)
+            localStorage.setItem('auth', auth)
+            alert('registered sucessfully')
+            return;
+        }
+        
+    }
+    console.log(localStorage.getItem('auth'))
+</script>
+</html>

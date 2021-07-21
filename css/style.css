@@ -1,0 +1,41 @@
+body{
+    background-color: lightcoral;
+    text-align: center;
+}
+.container{
+    /* background-color: red; */
+    margin-top: 4em;
+    padding: 3em 2em; 
+    font-size: xx-large;   
+}
+.btn-1{
+    margin: 2em 1em 1em 1em;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
+    padding: 0.2em 1em;
+    font-size: large;
+    background-color: lightcoral;
+}
+.btn-2{
+    border-radius: 1em;
+    font-size: large;
+    padding: 0.2em 0.9em;
+    background-color: lightcoral;
+    
+}
+.aa{
+    text-decoration: none;
+    color: lightslategrey;
+    
+}
+.btn-2:hover{
+    background-color: cyan;
+}
+.btn-1:hover{
+    background-color: cyan;
+}
+.fog{
+    font-size: medium;
+}
